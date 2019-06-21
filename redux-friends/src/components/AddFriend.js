@@ -69,7 +69,6 @@ class AddFriend extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state.friendsReducer.creatingFriend);
   return {
     error: state.friendsReducer.error,
     creatingFriend: state.friendsReducer.creatingFriend
