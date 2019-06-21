@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 export const LOGIN_START = "LOGIN_START";
@@ -23,7 +23,9 @@ export const getFriends = () => dispatch => {
   dispatch({ type: FETCH_FRIENDS_START });
   axiosWithAuth()
     .get("/friends")
-    .then(res => console.log(res))
+    .then(res => {
+      dispatch({ type: FETCH_FRIENDS_SUCCESS, payload: res.data });
+    })
     .catch(err => {
       dispatch({
         type: FETCH_FRIENDS_FAILURE,

@@ -18,6 +18,12 @@ export const friendsReducer = (state = initialState, action) => {
         error: "",
         fetchingFriends: true
       };
+    case FETCH_FRIENDS_SUCCESS:
+      return {
+        ...state,
+        fetchingFriends: false,
+        friends: action.payload
+      };
     case FETCH_FRIENDS_FAILURE:
       return {
         ...state,
