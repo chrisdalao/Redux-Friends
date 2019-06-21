@@ -22,11 +22,7 @@ export class Login extends Component {
 
   login = e => {
     e.preventDefault();
-    this.props.login(this.state.credentials).then(res => {
-      if (res) {
-        this.props.history.push("/friends");
-      }
-    });
+    this.props.login(this.state.credentials);
   };
 
   render() {
@@ -67,5 +63,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  login
+  { login }
 )(Login);
