@@ -22,7 +22,14 @@ export class Login extends Component {
 
   login = e => {
     e.preventDefault();
-    this.props.login(this.state.credentials);
+    this.props
+      .login(this.state.credentials) //this.props.login is calling .post - .then is handling the data - .catch handles the error
+      //.then is called here when .then is called in loginReducer whic is successful and returns true
+      .then(res => {
+        if (res) {
+          this.props.history.push("./friends");
+        }
+      });
   };
 
   render() {
