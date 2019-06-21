@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Loader from "react-loader-spinner";
+import { login } from "../actions";
 
 export class Login extends Component {
   state = {
@@ -7,6 +9,24 @@ export class Login extends Component {
       username: "",
       password: ""
     }
+  };
+
+  handleChange = e => {
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
+    });
+  };
+
+  login = e => {
+    e.preventDefault();
+    this.props.login(this.state.credentials).then(res => {
+      if (res) {
+        this.props.history.push("/friends");
+      }
+    });
   };
 
   render() {
@@ -38,4 +58,14 @@ export class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => {
+  return {
+    error: state.loginReducer.error,
+    loggingIn: state.loginReducer.loggingIn
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  login
+)(Login);

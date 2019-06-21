@@ -17,7 +17,7 @@ function App() {
           </li>
         </ul>
         <Route path="/login" component={Login} />
-        <Route path="/friends" component={Friends} />
+        <Route exact path="/friends" component={Friends} />
       </div>
     </Router>
   );
