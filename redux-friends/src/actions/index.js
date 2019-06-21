@@ -41,6 +41,16 @@ export const createFriend = friend => dispatch => {
   dispatch({ type: CREATE_FRIENDS_START });
   return axiosWithAuth()
     .post("/friends", friend)
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+    .then(res => {
+      dispatch({
+        type: CREATE_FRIENDS_SUCCESS,
+        payload: res.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: CREATE_FRIENDS_FAILURE,
+        payload: err.response
+      });
+    });
 };

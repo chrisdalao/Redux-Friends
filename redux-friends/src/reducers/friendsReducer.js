@@ -40,6 +40,19 @@ export const friendsReducer = (state = initialState, action) => {
         error: "",
         creatingFriend: true
       };
+    case CREATE_FRIENDS_SUCCESS:
+      console.log(action);
+      return {
+        ...state,
+        friends: action.payload,
+        creatingFriend: false
+      };
+    case CREATE_FRIENDS_FAILURE:
+      return {
+        ...state,
+        creatingFriend: false,
+        error: action.payload
+      };
     default:
       return state;
   }
