@@ -33,3 +33,14 @@ export const getFriends = () => dispatch => {
       });
     });
 };
+
+export const CREATE_FRIENDS_SUCCESS = "CREATE_FRIENDS_SUCCESS";
+export const CREATE_FRIENDS_START = "CREATE_FRIENDS_START";
+export const CREATE_FRIENDS_FAILURE = "CREATE_FRIENDS_FAILURE";
+export const createFriend = friend => dispatch => {
+  dispatch({ type: CREATE_FRIENDS_START });
+  return axiosWithAuth()
+    .post("/friends", friend)
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+};
