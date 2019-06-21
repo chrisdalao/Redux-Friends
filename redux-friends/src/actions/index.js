@@ -7,6 +7,10 @@ export const login = credentials => dispatch => {
   dispatch({ type: LOGIN_START });
   axios
     .post("http://localhost:5000/api/login", credentials)
-    .then(res => console.log(res))
+    .then(res => {
+      localStorage.setItem("token", res.data.payload);
+      dispatch({ type: LOGIN_SUCCESS });
+      return true;
+    })
     .catch(err => console.log(err.response));
 };
